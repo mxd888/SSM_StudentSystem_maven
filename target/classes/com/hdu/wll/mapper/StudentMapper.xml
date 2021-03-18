@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdu.wll.dao.StudentMapper">
+    
+
+	<select id="getClassIPageWithOther" parameterType="int"
+		resultType="scoreStudentsListWithScoreClassList">
+		SELECT id, student_username, student_password, student_name,
+		student_role, li.class_id, class_list_name, class_students_count, academy_id
+		FROM score_class_list li, score_students_list sli
+		WHERE li.class_id = sli.class_id
+		AND li.class_id = #{class_id}
+		LIMIT #{page}, #{limit};
+	</select>
+	
+	
+	
+</mapper>

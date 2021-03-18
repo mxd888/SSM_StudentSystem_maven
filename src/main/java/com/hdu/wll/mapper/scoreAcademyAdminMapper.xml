@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdu.wll.dao.scoreAcademyAdminMapper">
+
+	<select id="getIPageWithOther" parameterType="string"
+		resultType="scoreAcademyAdminWithscoreAcademyList">
+		SELECT *
+		FROM score_academy_admin ad, score_academy_list list
+		WHERE ad.academy_id = list.academy_id
+		LIMIT #{page}, #{limit};
+	</select>
+
+
+	<select id="getAllList"
+		resultType="scoreAcademyAdminWithscoreAcademyList">
+		SELECT *
+		FROM score_academy_admin ad, score_academy_list list
+		WHERE ad.academy_id = list.academy_id;
+	</select>
+
+
+</mapper>

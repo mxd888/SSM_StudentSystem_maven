@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdu.wll.dao.scoreClassListMapper">
+
+
+<select id="getClassIPageWithOther" parameterType="string"
+		resultType="scoreClassListWithScoreAcademyList">
+		SELECT *
+		FROM score_class_list li, score_academy_list list
+		WHERE li.academy_id = list.academy_id
+		AND li.academy_id = #{academy_id}
+		LIMIT #{page}, #{limit};
+	</select>
+	
+	<select id="getClassAll" parameterType="string"
+		resultType="scoreClassListWithScoreAcademyList">
+		SELECT *
+		FROM score_class_list li, score_academy_list list
+		WHERE li.academy_id = list.academy_id
+		AND li.academy_id = #{academy_id};
+	</select>
+	
+	
+<select id="getIPageWithOther" parameterType="string"
+		resultType="scoreClassAdminWitScoreClassListWithScoreAcademyList">
+		SELECT ad.id, ad.class_admin_username, ad.class_admin_password, ad.class_admin_name,
+		ad.class_id, ad.class_amin_role, li.class_list_name, li.class_students_count, 
+		li.academy_id, list.academy_name
+		FROM score_class_admin ad, score_class_list li, score_academy_list list
+		WHERE ad.class_id = li.class_id AND li.academy_id = list.academy_id
+		AND ad.academy_id = #{academy_id}
+		LIMIT #{page}, #{limit};
+	</select>
+	
+	<select id="getAll" parameterType="string"
+		resultType="scoreClassAdminWitScoreClassListWithScoreAcademyList">
+		SELECT ad.id, ad.class_admin_username, ad.class_admin_password, ad.class_admin_name,
+		ad.class_id, ad.class_amin_role, li.class_list_name, li.class_students_count, 
+		li.academy_id, list.academy_name
+		FROM score_class_admin ad, score_class_list li, score_academy_list list
+		WHERE ad.class_id = li.class_id AND li.academy_id = list.academy_id
+		AND ad.academy_id = #{academy_id};
+	</select>
+
+</mapper>
